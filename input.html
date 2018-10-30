@@ -1,14 +1,230 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-	<title>输入</title>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <title>输入</title>
 </head>
+
 <body class="main">
-	 测试测试222333
+    <div class="container" style="margin-top: 20px">
+        <form id="form_data" class="form" style="margin-left: 120px;margin-right: 120px">
+            <div class="form-group">
+                <label class="control-label " for="name">
+                    姓名
+                </label>
+                <input class="form-control" id="name" name="name" type="text" />
+            </div>
+            <div class="form-group ">
+                <label class="control-label " for="computer">
+                    电脑号
+                </label>
+                <input class="form-control" id="computer" name="computer" type="text" />
+            </div>
+            <div class="form-group ">
+                <label class="control-label " for="acc">
+                    事故编号
+                </label>
+                <input class="form-control" id="acc" name="acc" type="text" />
+            </div>
+            <div class="form-group ">
+                <label class="control-label " for="company">
+                    单位名称
+                </label>
+                <input class="form-control" id="company" name="company" type="text" />
+            </div>
+            <div class="form-group ">
+                <label class="control-label " for="year">
+                    年度
+                </label>
+                <select class="select form-control" id="year" name="year">
+                    <option value="2012">
+                        2012
+                    </option>
+                    <option value="2013">
+                        2013
+                    </option>
+                    <option value="2014">
+                        2014
+                    </option>
+                    <option value="2015">
+                        2015
+                    </option>
+                    <option value="2016">
+                        2016
+                    </option>
+                    <option value="2017">
+                        2017
+                    </option>
+                    <option value="2018">
+                        2018
+                    </option>
+                </select>
+            </div>
+            <div class="form-group ">
+                <label class="control-label " for="month">
+                    月份
+                </label>
+                <select class="select form-control" id="month" name="month">
+                    <option value="1">
+                        1
+                    </option>
+                    <option value="2">
+                        2
+                    </option>
+                    <option value="3">
+                        3
+                    </option>
+                    <option value="4">
+                        4
+                    </option>
+                    <option value="5">
+                        5
+                    </option>
+                    <option value="6">
+                        6
+                    </option>
+                    <option value="7">
+                        7
+                    </option>
+                    <option value="8">
+                        8
+                    </option>
+                    <option value="9">
+                        9
+                    </option>
+                    <option value="10">
+                        10
+                    </option>
+                    <option value="11">
+                        11
+                    </option>
+                    <option value="12">
+                        12
+                    </option>
+                </select>
+            </div>
+            <div class="form-group ">
+                <label class="control-label " for="cla">
+                    类别
+                </label>
+                <select class="select form-control" id="cla" name="cla">
+                    <option value="轻伤">
+                        轻伤
+                    </option>
+                    <option value="致残">
+                        致残
+                    </option>
+                    <option value="全残">
+                        全残
+                    </option>
+                    <option value="死亡">
+                        死亡
+                    </option>
+                </select>
+            </div>
+            <div class="form-group ">
+                <label class="control-label " for="rank">
+                    级别
+                </label>
+                <select class="select form-control" id="rank" name="rank">
+                    <option value="1">
+                        1
+                    </option>
+                    <option value="2">
+                        2
+                    </option>
+                    <option value="3">
+                        3
+                    </option>
+                    <option value="4">
+                        4
+                    </option>
+                    <option value="5">
+                        5
+                    </option>
+                    <option value="6">
+                        6
+                    </option>
+                    <option value="7">
+                        7
+                    </option>
+                    <option value="8">
+                        8
+                    </option>
+                    <option value="9">
+                        9
+                    </option>
+                    <option value="10">
+                        10
+                    </option>
+                </select>
+            </div>
+            <div class="form-group ">
+                <label class="control-label " for="cta">
+                    目录
+                </label>
+                <select class="select form-control" id="cta" name="cta">
+                    <option value="认定申请">
+                        认定申请
+                    </option>
+                    <option value="待遇偿付">
+                        待遇偿付
+                    </option>
+                    <option value="机关事业单位工伤认定以及待遇申报核定">
+                        机关事业单位工伤认定以及待遇申报核定
+                    </option>
+                    <option value="伤残退休">
+                        伤残退休
+                    </option>
+                </select>
+            </div>
+            <div class="form-group ">
+                <label class="control-label " for="doc">
+                    档号
+                </label>
+                <input class="form-control" id="doc" name="doc" type="text" />
+            </div>
+            <div class="form-group ">
+                <label class="control-label " for="box">
+                    盒子
+                </label>
+                <input class="form-control" id="box" name="box" type="text" />
+            </div>
+            <div class="form-group">
+                <div>
+                    <button class="btn btn-primary " id="confirm2">
+                        提交
+                    </button>
+                    <a class="btn btn-info " href="entrance.html">
+                        返回主界面
+                    </a>
+                </div>
+            </div>
+    </div>
+     <div class="modal fade" id="nextModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">操作成功</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="next" data-dismiss="modal">继续录入下一条</button>
+                    <button type="button" class="btn btn-warning" id="back" data-dismiss="modal">返回主界面</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-    <script>
-      // You can also require other files to run in this process
-      require('./input.js')
-    </script>
+<script>
+// You can also require other files to run in this process
+require('./input.js')
+</script>
+
 </html>

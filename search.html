@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>
-		搜索
-	</title>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <title>
+        搜索
+    </title>
 </head>
-<body>
-	搜索
+
+<body class="main">
+    <div class="container" style="margin-top: 80px">
+        <div class="form-group ">
+            <label class="control-label " for="computer">
+                电脑号
+            </label>
+            <input class="form-control" id="computer" name="computer" type="text" />
+        </div>
+        <div>
+            或者
+        </div>
+         <br/>
+        <div class="form-group ">
+            <label class="control-label " for="acc">
+                事故编号
+            </label>
+            <input class="form-control" id="acc" name="acc" type="text" />
+        </div>
+        <div class="form-group">
+            <div>
+                <button class="btn btn-primary " id="search">
+                    搜索
+                </button>
+                <a class="btn btn-info " href="entrance.html">
+                        返回主界面
+                    </a>
+            </div>
+        </div>
+        <hr/>
+    </div>
 </body>
+<script>
+// You can also require other files to run in this process
+require('./search.js')
+</script>
+
+
 </html>
