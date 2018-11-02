@@ -16,14 +16,23 @@ var db = low(adapter)
 // Add a post
 
 
+var tableName = {"name":"姓名","computer":"电脑号","acc":"事故编号","company":"单位名称","year":"年份","month":"月份","cla":"类别","rank":"级别","cta":"目录","doc":"档号","box":"盒子"}
 
-
+function drawRow(rowData) {
+    $("#tableBody").empty();
+    console.log(rowData)
+    $.each(rowData, function(key, val) {
+            var row = $("<tr />")
+            $("#tableBody").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
+            row.append($("<td>" + tableName[key] + "</td>"));
+            row.append($("<td>" + val + "</td>"));
+        });
+}
 
 $("#search").click(function(event) {
     var computer = $('#computer').val();
     var acc = $('#acc').val();
     var data = {}
-    console.log(computer)
     if (computer) {
         data = db.get('posts')
             .find({ 'computer': computer })
@@ -33,5 +42,10 @@ $("#search").click(function(event) {
             .find({ 'acc':  acc})
             .value()
     }
-    console.log(data)
+    if(data){
+        drawRow(data);
+    }else{
+         $("#tableBody").empty();
+         $("#tableBody").append($("<div>查询不到这个记录</div>"));
+    }
 })
