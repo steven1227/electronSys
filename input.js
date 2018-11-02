@@ -15,7 +15,7 @@ var adapter = new FileSync(dirs.userConfig() + '/db.json')
 var db = low(adapter)
 // Add a post
 
-tableName = {"name":"姓名","computer":"电脑号","acc":"事故编号","company":"单位名称","year":"年份","month":"月份","cla":"类别","rank":"级别","cta":"目录","doc":"档号","box":"盒子"}
+tableName = {"name":"姓名","computer":"电脑号","acc":"事故编号","company":"单位名称","year":"年份","month":"月份","cla":"类别","rank":"级别","cta":"目录","doc":"档号","box":"盒号","index":"序号"}
 
 
 
