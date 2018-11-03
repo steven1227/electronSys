@@ -30,12 +30,14 @@ $('#loginBtn').click(function(){
 		$('#errorModal').modal('show');
 	}
 });
-$('#forgeBtn').click(function(){
-	var username = $('#username').val();
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+    var username = $('#username').val();
 	var password = $('#password').val();
 	if(username === 'Cls' && password === pass){
 		window.location.href = "entrance.html";
 	}else{
 		$('#errorModal').modal('show');
 	}
+    }
 });

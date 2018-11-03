@@ -5,6 +5,8 @@ var low = require('lowdb')
 var AppDirectory = require('appdirectory')
 var dirs = new AppDirectory('mycoolappname')
 
+const {ipcRenderer} = require('electron')
+
 console.log(dirs.userConfig())
 var fs = require('fs');
 if (!fs.existsSync(dirs.userConfig())) {
@@ -14,7 +16,7 @@ var FileSync = require('lowdb/adapters/FileSync')
 var adapter = new FileSync(dirs.userConfig() + '/db.json')
 var db = low(adapter)
 // Add a post
-
+var index = 0
 
 var tableName = { "name": "姓名", "computer": "电脑号", "acc": "事故编号", "company": "单位名称", "year": "年份", "month": "月份", "cla": "类别", "rank": "级别", "cta": "目录", "doc": "档号", "box": "盒号", "index": "序号" }
 
@@ -28,7 +30,6 @@ function drawRow(rowData) {
             row.append($("<td>" + tableName[key] + "</td>"));
             row.append($("<td>" + val + "</td>"));
         }
-
     });
 }
 
@@ -47,8 +48,26 @@ $("#search").click(function(event) {
     }
     if (data) {
         drawRow(data);
+        index = data['index']
+        $('#funcBtn').show();
     } else {
         $("#tableBody").empty();
         $("#tableBody").append($("<div>查询不到这个记录</div>"));
+        $('#funcBtn').hide();
     }
+})
+
+
+$('#print').click(function(){
+    console.log("print")
+    ipcRenderer.send('print-to-pdf','ping');
+})
+
+ipcRenderer.on('wrote-pdf',function(event,path){
+    console.log(path)
+})
+
+
+$('#modify').click(function(){
+    window.location.href = "modify.html?index="+index;
 })

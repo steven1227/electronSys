@@ -5,6 +5,8 @@ var low = require('lowdb')
 var AppDirectory = require('appdirectory')
 var dirs = new AppDirectory('mycoolappname')
 
+const {ipcRenderer} = require('electron')
+
 console.log(dirs.userConfig())
 var fs = require('fs');
 if (!fs.existsSync(dirs.userConfig())) {
@@ -14,10 +16,21 @@ var FileSync = require('lowdb/adapters/FileSync')
 var adapter = new FileSync(dirs.userConfig() + '/db.json')
 var db = low(adapter)
 // Add a post
+var index = 0
 
-tableName = {"name":"姓名","computer":"电脑号","acc":"事故编号","company":"单位名称","year":"年份","month":"月份","cla":"类别","rank":"级别","cta":"目录","doc":"档号","box":"盒号","index":"序号"}
+var tableName = { "name": "姓名", "computer": "电脑号", "acc": "事故编号", "company": "单位名称", "year": "年份", "month": "月份", "cla": "类别", "rank": "级别", "cta": "目录", "doc": "档号", "box": "盒号", "index": "序号" }
 
+function getParameterByName(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+var index = parseInt(getParameterByName('index'));
 
+function populate(data) {
+  $.each(data, function(key, value){
+    $('#'+key).val(value);
+  });
+}
 
 function getFormData($form) {
     var unindexed_array = $form.serializeArray();
@@ -33,18 +46,6 @@ function getFormData($form) {
     return indexed_array;
 }
 
-$("#confirm2").click(function(event) {
-    event.preventDefault()
-    var $form = $("#form_data");
-    var data = getFormData($form);
-    var index = db.get('count').value() + 1;
-    data['index'] = index
-    db.get('posts').push(data).write()
-    db.update('count', n => n + 1).write()
-    drawRow(data);
-    $('#nextModal').modal('show');
-})
-
 function drawRow(rowData) {
     $.each(rowData, function(key, val) {
             var row = $("<tr />")
@@ -54,11 +55,28 @@ function drawRow(rowData) {
         });
 }
 
-$("#next").click(function(event) {
-	window.location.href = "input.html";
-})
-
 $("#back").click(function(event) {
 		window.location.href = "entrance.html";
 })
 
+$("#confirm2").click(function(event) {
+    event.preventDefault()
+    var $form = $("#form_data");
+    var data = getFormData($form);
+    data['index'] = index
+    db.get('posts').remove(function(d){
+    	return d['index']==index
+    }).write();
+    db.get('posts').push(data).write()
+    drawRow(data);
+    $('#nextModal').modal('show');
+})
+
+var data = {}
+if (index) {
+    data = db.get('posts')
+        .find({'index':index})
+        .value()
+    }
+console.log(data)
+populate(data)

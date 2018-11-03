@@ -1,6 +1,14 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow,ipcMain, shell} = require('electron')
+const fs = require('fs')
+const os = require('os')
+const path = require('path');
 
+var AppDirectory = require('appdirectory')
+var dirs = new AppDirectory('mycoolappname')
+if (!fs.existsSync(dirs.userConfig())) {
+    fs.mkdirSync(dirs.userConfig());
+}
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -24,6 +32,23 @@ function createWindow () {
   })
 }
 
+ipcMain.on('print-to-pdf',function(event,arg){
+  const pdfPath = path.join(dirs.userConfig(), 'result.pdf');
+  const win = BrowserWindow.fromWebContents(event.sender);
+  console.log(pdfPath)
+  win.webContents.printToPDF({},function(err,data){
+    if(err){
+      return console.log(err.message);
+    }
+    fs.writeFile(pdfPath,data,function(error){
+      if(error){
+          return console.log(err.message);
+        }
+        event.sender.send("wrote-pdf",pdfPath)
+    })
+  })
+
+})
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
