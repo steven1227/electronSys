@@ -3,7 +3,7 @@ window.$ = $;
 require('bootstrap');
 var low = require('lowdb')
 var AppDirectory = require('appdirectory')
-var dirs = new AppDirectory('mycoolappname')
+var dirs = new AppDirectory('mycws')
 
 const {ipcRenderer} = require('electron')
 
@@ -64,7 +64,7 @@ $('#print').click(function(){
 })
 
 ipcRenderer.on('wrote-pdf',function(event,path){
-    console.log(path)
+    alert("打印出来的pdf保存到:"+path)
 })
 
 

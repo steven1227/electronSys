@@ -3,7 +3,7 @@ window.$ = $;
 require('bootstrap');
 var low = require('lowdb')
 var AppDirectory = require('appdirectory')
-var dirs = new AppDirectory('mycoolappname')
+var dirs = new AppDirectory('mycws')
 
 const {ipcRenderer} = require('electron')
 

@@ -5,7 +5,7 @@ const os = require('os')
 const path = require('path');
 
 var AppDirectory = require('appdirectory')
-var dirs = new AppDirectory('mycoolappname')
+var dirs = new AppDirectory('mycws')
 if (!fs.existsSync(dirs.userConfig())) {
     fs.mkdirSync(dirs.userConfig());
 }

@@ -4,7 +4,7 @@ require('bootstrap');
 
 var low = require('lowdb')
 var AppDirectory = require('appdirectory')
-var dirs = new AppDirectory('mycoolappname')
+var dirs = new AppDirectory('mycws')
 
 console.log(dirs.userConfig())
 var fs = require('fs');
@@ -32,7 +32,7 @@ $('#loginBtn').click(function(){
 });
 $(document).keypress(function(e) {
     if(e.which == 13) {
-    var username = $('#username').val();
+    vhttps://pan.baidu.com/s/1D3wCnq-19aptSHdh5zDmoAar username = $('#username').val();
 	var password = $('#password').val();
 	if(username === 'Cls' && password === pass){
 		window.location.href = "entrance.html";
