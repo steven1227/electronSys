@@ -5,7 +5,7 @@ var low = require('lowdb')
 var AppDirectory = require('appdirectory')
 var dirs = new AppDirectory('mycws')
 
-const {ipcRenderer} = require('electron')
+const { ipcRenderer } = require('electron')
 
 console.log(dirs.userConfig())
 var fs = require('fs');
@@ -58,16 +58,16 @@ $("#search").click(function(event) {
 })
 
 
-$('#print').click(function(){
+$('#print').click(function() {
     console.log("print")
-    ipcRenderer.send('print-to-pdf','ping');
+    ipcRenderer.send('print-to-pdf', 'ping');
 })
 
-ipcRenderer.on('wrote-pdf',function(event,path){
-    alert("打印出来的pdf保存到:"+path)
+ipcRenderer.on('wrote-pdf', function(event, path) {
+    alert("打印出来的pdf保存到:" + path)
 })
 
 
-$('#modify').click(function(){
-    window.location.href = "modify.html?index="+index;
+$('#modify').click(function() {
+    window.location.href = "modify.html?index=" + index;
 })

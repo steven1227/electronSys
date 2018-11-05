@@ -5,7 +5,7 @@ var low = require('lowdb')
 var AppDirectory = require('appdirectory')
 var dirs = new AppDirectory('mycws')
 
-const {ipcRenderer} = require('electron')
+const { ipcRenderer } = require('electron')
 
 console.log(dirs.userConfig())
 var fs = require('fs');
@@ -27,9 +27,9 @@ function getParameterByName(name) {
 var index = parseInt(getParameterByName('index'));
 
 function populate(data) {
-  $.each(data, function(key, value){
-    $('#'+key).val(value);
-  });
+    $.each(data, function(key, value) {
+        $('#' + key).val(value);
+    });
 }
 
 function getFormData($form) {
@@ -48,15 +48,15 @@ function getFormData($form) {
 
 function drawRow(rowData) {
     $.each(rowData, function(key, val) {
-            var row = $("<tr />")
-            $("#tableBody").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
-            row.append($("<td>" + tableName[key] + "</td>"));
-            row.append($("<td>" + val + "</td>"));
-        });
+        var row = $("<tr />")
+        $("#tableBody").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
+        row.append($("<td>" + tableName[key] + "</td>"));
+        row.append($("<td>" + val + "</td>"));
+    });
 }
 
 $("#back").click(function(event) {
-		window.location.href = "entrance.html";
+    window.location.href = "entrance.html";
 })
 
 $("#confirm2").click(function(event) {
@@ -64,8 +64,8 @@ $("#confirm2").click(function(event) {
     var $form = $("#form_data");
     var data = getFormData($form);
     data['index'] = index
-    db.get('posts').remove(function(d){
-    	return d['index']==index
+    db.get('posts').remove(function(d) {
+        return d['index'] == index
     }).write();
     db.get('posts').push(data).write()
     drawRow(data);
@@ -75,8 +75,8 @@ $("#confirm2").click(function(event) {
 var data = {}
 if (index) {
     data = db.get('posts')
-        .find({'index':index})
+        .find({ 'index': index })
         .value()
-    }
+}
 console.log(data)
 populate(data)
