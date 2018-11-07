@@ -18,6 +18,29 @@ var db = low(adapter)
 tableName = {"name":"姓名","computer":"电脑号","acc":"事故编号","company":"单位名称","year":"年份","month":"月份","cla":"类别","rank":"级别","cta":"目录","doc":"档号","box":"盒号","index":"序号"}
 
 
+var exists =  db.get('posts').orderBy(['index'], ['desc']).value()
+
+   $.each(exists, function (index, value) {
+        var TableRow = "<tr>";
+        TableRow += "<td>" +  value['index'] + "</td>";
+        TableRow += "<td>" +  value['name'] + "</td>";
+        TableRow += "<td>" +  value['computer']+ "</td>";
+        TableRow += "<td>" +  value['company'] + "</td>";
+        TableRow += "<td>" +  value['year'] + "</td>";
+        TableRow += "<td>" + value['month'] + "</td>";
+        TableRow += "</tr>";
+        $('#ttBody').append(TableRow);
+    });
+
+
+// function drawRow(rowData) {
+//     $("#tableBody").empty();
+//     var row = $("<tr />")
+//     $.each(rowData, function(key, val) {
+//         $("#tableBody").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
+//         row.append($("<td>" + val + "</td>"));
+//     });
+// }
 
 function getFormData($form) {
     var unindexed_array = $form.serializeArray();
@@ -62,3 +85,16 @@ $("#back").click(function(event) {
 		window.location.href = "entrance.html";
 })
 
+
+$("#copy").click(function(event) {
+     event.preventDefault()
+    $("#doc").select();
+    document.execCommand("copy");
+})
+
+
+$("#paste").click(function(event) {
+    event.preventDefault()
+    $("#doc").select();
+    document.execCommand("paste");
+})
