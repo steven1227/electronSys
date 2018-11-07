@@ -25,6 +25,7 @@ var exists =  db.get('posts').orderBy(['index'], ['desc']).value()
         TableRow += "<td>" +  value['index'] + "</td>";
         TableRow += "<td>" +  value['name'] + "</td>";
         TableRow += "<td>" +  value['computer']+ "</td>";
+        TableRow += "<td>" +  value['cla'] + "</td>";
         TableRow += "<td>" +  value['company'] + "</td>";
         TableRow += "<td>" +  value['year'] + "</td>";
         TableRow += "<td>" + value['month'] + "</td>";
