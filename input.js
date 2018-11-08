@@ -29,19 +29,12 @@ var exists =  db.get('posts').orderBy(['index'], ['desc']).value()
         TableRow += "<td>" +  value['company'] + "</td>";
         TableRow += "<td>" +  value['year'] + "</td>";
         TableRow += "<td>" + value['month'] + "</td>";
+        TableRow += "<td>" + value['box'] + "</td>";
         TableRow += "</tr>";
         $('#ttBody').append(TableRow);
     });
 
 
-// function drawRow(rowData) {
-//     $("#tableBody").empty();
-//     var row = $("<tr />")
-//     $.each(rowData, function(key, val) {
-//         $("#tableBody").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
-//         row.append($("<td>" + val + "</td>"));
-//     });
-// }
 
 function getFormData($form) {
     var unindexed_array = $form.serializeArray();

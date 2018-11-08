@@ -31,16 +31,19 @@ function drawRow(Data) {
                 $("#tableBody").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
                 row.append($("<td>" + tableName[key] + "</td>"));
                 row.append($("<td>" + val + "</td>"));
-            }else{
+            } else {
                 index1 = val;
             }
         });
         var btn1 = $("<button class='btn btn-success modify'>修改</button>");
         btn1.data("indexId", index1);
         var btn2 = $("<button class='btn btn-warning print' style='margin-left:8px'>打印</button>");
+        var btn3 = $("<button class='btn btn-danger delete' style='margin-left:8px'>删除</button>");
+          btn3.data("indexId", index1);
         var hr = $("<hr />")
         $("#tableBody").append(btn1);
         $("#tableBody").append(btn2);
+        $("#tableBody").append(btn3);
         $("#tableBody").append(hr);
     });
 }
@@ -60,7 +63,7 @@ $("#search").click(function(event) {
     }
     if (data) {
         drawRow(data);
-      
+
         $('.print').click(function() {
             console.log("print")
             ipcRenderer.send('print-to-pdf', 'ping');
@@ -68,6 +71,13 @@ $("#search").click(function(event) {
         $('.modify').click(function(event) {
             index = $(this).data('indexId')
             window.location.href = "modify.html?index=" + index;
+        })
+        $('.delete').click(function(event) {
+            index = $(this).data('indexId');
+            db.get('posts').remove(function(d) {
+                return d['index'] == parseInt(index)
+            }).write();
+            window.location.href = "search.html";
         })
     } else {
         $("#tableBody").empty();
@@ -81,5 +91,3 @@ $("#search").click(function(event) {
 ipcRenderer.on('wrote-pdf', function(event, path) {
     alert("打印出来的pdf保存到:" + path)
 })
-
-

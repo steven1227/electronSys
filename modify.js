@@ -24,7 +24,7 @@ function getParameterByName(name) {
     var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
-var index = parseInt(getParameterByName('index'));
+index = parseInt(getParameterByName('index'));
 
 function populate(data) {
     $.each(data, function(key, value) {
@@ -78,5 +78,4 @@ if (index) {
         .find({ 'index': index })
         .value()
 }
-console.log(data)
 populate(data)
