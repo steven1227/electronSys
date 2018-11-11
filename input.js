@@ -17,22 +17,62 @@ var db = low(adapter)
 
 tableName = {"name":"姓名","computer":"电脑号","acc":"事故编号","company":"单位名称","year":"年份","month":"月份","cla":"类别","rank":"级别","cta":"目录","doc":"档号","box":"盒号","index":"序号"}
 
+//  <li class="page-item"><a class="page-link" href="#">1</a></li>
+//  <li class="page-item"><a class="page-link" href="#">2</a></li>
+//  <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+
+var p_num = 1
+var PER_PAGE = 10;
+var total = 0;
 
 var exists =  db.get('posts').orderBy(['index'], ['desc']).value()
 
-   $.each(exists, function (index, value) {
-        var TableRow = "<tr>";
-        TableRow += "<td>" +  value['index'] + "</td>";
-        TableRow += "<td>" +  value['name'] + "</td>";
-        TableRow += "<td>" +  value['computer']+ "</td>";
-        TableRow += "<td>" +  value['cla'] + "</td>";
-        TableRow += "<td>" +  value['company'] + "</td>";
-        TableRow += "<td>" +  value['year'] + "</td>";
-        TableRow += "<td>" + value['month'] + "</td>";
-        TableRow += "<td>" + value['box'] + "</td>";
-        TableRow += "</tr>";
-        $('#ttBody').append(TableRow);
-    });
+total = Math.ceil((1.0 * exists.length)/PER_PAGE)
+
+var navi_btn = $('#pagination');
+
+
+for( var j = 0;j < total; j++){
+    const test = j+1;
+    $('#pagination').append(function(){
+        var Li = $('<li class="page-item"><a class="page-link">'+test+'</a></li>');
+        Li.click(function(event){
+            $('.page-item').removeClass('active');
+            console.log($(this).addClass('active'));
+            render_tt(test);
+        })
+        return Li;
+    })
+}
+
+
+
+var render_tt  = function(pagi_num){
+    $('#ttBody').empty()
+    for(var i= (pagi_num-1)*PER_PAGE;i <(pagi_num)*PER_PAGE && i<exists.length; i++){
+            var value = exists[i];
+            var TableRow = "<tr>";
+            TableRow += "<td>" +  value['index'] + "</td>";
+            TableRow += "<td>" +  value['name'] + "</td>";
+            TableRow += "<td>" +  value['computer']+ "</td>";
+            TableRow += "<td>" +  value['cla'] + "</td>";
+            TableRow += "<td>" +  value['company'] + "</td>";
+            TableRow += "<td>" +  value['year'] + "</td>";
+            TableRow += "<td>" + value['month'] + "</td>";
+            TableRow += "<td>" + value['box'] + "</td>";
+            TableRow += "</tr>";
+            $('#ttBody').append(TableRow);
+    }
+}
+
+render_tt(p_num)
+
+
+
+   // $.each(exists, function (index, value) {
+
+   //  });
 
 
 
