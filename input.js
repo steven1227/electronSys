@@ -40,8 +40,6 @@ for( var j = 0;j < total; j++){
         Li.click(function(event){
             $('.page-item').removeClass('active');
             console.log($(this).addClass('active'));
-            render_tt(test);
-        })
         return Li;
     })
 }
