@@ -39,7 +39,9 @@ for( var j = 0;j < total; j++){
         var Li = $('<li class="page-item"><a class="page-link">'+test+'</a></li>');
         Li.click(function(event){
             $('.page-item').removeClass('active');
-            console.log($(this).addClass('active'));
+            $(this).addClass('active');
+            render_tt(test);
+        });
         return Li;
     })
 }
@@ -47,7 +49,9 @@ for( var j = 0;j < total; j++){
 
 
 var render_tt  = function(pagi_num){
-    $('#ttBody').empty()
+    $('#ttBody').empty();
+    var h = $("<tr><th>序号</th><th>姓名</th><th>电脑号</th><th>类别</th><th>单位名称</th><th>年</th><th>月</th><th>盒号</th></tr>");
+     $('#ttBody').append(h);
     for(var i= (pagi_num-1)*PER_PAGE;i <(pagi_num)*PER_PAGE && i<exists.length; i++){
             var value = exists[i];
             var TableRow = "<tr>";
